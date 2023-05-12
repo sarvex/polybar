@@ -6,7 +6,7 @@ import os
 import argparse
 import subprocess
 
-EXTENSIONS = set('.' + ext for ext in ['c', 'h', 'cpp', 'hpp', 'inl'])
+EXTENSIONS = {f'.{ext}' for ext in ['c', 'h', 'cpp', 'hpp', 'inl']}
 
 
 def get_files(dirs):
@@ -33,7 +33,7 @@ def main():
                         help='Command to which to pass found files')
     args = parser.parse_args()
 
-    all_files = list(str(file) for file in get_files(args.dirs))
+    all_files = [str(file) for file in get_files(args.dirs)]
 
     if not all_files:
         print("No files found")
